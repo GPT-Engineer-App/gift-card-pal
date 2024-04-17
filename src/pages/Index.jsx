@@ -1,9 +1,10 @@
 // Complete the Index page component for a gift card buying website
-import { Box, Button, Container, Flex, Heading, Image, Input, Select, Stack, Text, useToast } from "@chakra-ui/react";
+import { Box, Button, Container, Flex, Heading, Image, Input, Select, Stack, Text, useToast, useColorMode } from "@chakra-ui/react";
 import { FaGift, FaShoppingCart } from "react-icons/fa";
 
 const Index = () => {
   const toast = useToast();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   const handlePurchase = () => {
     toast({
@@ -29,8 +30,17 @@ const Index = () => {
           </Select>
           <Input placeholder="Amount" />
           <Input placeholder="Recipient's Email" />
-          <Button leftIcon={<FaGift />} colorScheme="teal" onClick={handlePurchase}>
+          <Button leftIcon={<FaGift />} colorScheme="teal" onClick={handlePurchase} mb={4}>
             Buy Now
+          </Button>
+          <Button
+            onClick={() => {
+              const newColorMode = colorMode === "light" ? "dark" : "light";
+              toggleColorMode();
+            }}
+            colorScheme="blue"
+          >
+            Toggle Dark Mode
           </Button>
         </Stack>
         <Box mt={6}>
